@@ -1,16 +1,11 @@
 <!doctype html>
-<meta charset="utf-8"><style data-dc-design-system-vars>@layer{:root{--primary:#0066cc;--primary-focus:#0071e3;--primary-on-dark:#2997ff;--canvas:#ffffff;--canvas-parchment:#f5f5f7;--surface-pearl:#fafafc;--surface-tile-1:#272729;--surface-tile-2:#2a2a2c;--surface-tile-3:#252527;--surface-black:#000000;--surface-chip-translucent:#d2d2d7a3;--ink:#1d1d1f;--body-on-dark:#ffffff;--body-muted:#cccccc;--ink-muted-80:#333333;--ink-muted-48:#7a7a7a;--divider-soft:#f0f0f0;--hairline:#e0e0e0;--shadow-product:rgba(0, 0, 0, 0.22) 3px 5px 30px 0;--space-xxs:4px;--space-xs:8px;--space-sm:12px;--space-md:17px;--space-lg:24px;--space-xl:32px;--space-xxl:48px;--space-section:80px;--radius-none:0px;--radius-xs:5px;--radius-sm:8px;--radius-md:11px;--radius-lg:18px;--radius-pill:9999px;--radius-full:50%;--font-display:"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;--font-text:"SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;--text-hero-display:600 56px/1.07 var(--font-display);--text-display-lg:600 40px/1.1 var(--font-display);--text-display-md:600 34px/1.47 var(--font-text);--text-lead:400 28px/1.14 var(--font-text);--text-lead-airy:300 24px/1.5 var(--font-text);--text-tagline:600 21px/1.19 var(--font-text);--text-body-strong:600 17px/1.24 var(--font-text);--text-body:400 17px/1.47 var(--font-text);--text-dense-link:400 17px/2.41 var(--font-text);--text-caption:400 14px/1.43 var(--font-text);--text-caption-strong:600 14px/1.29 var(--font-text);--text-button-large:300 18px/1 var(--font-text);--text-button-utility:400 14px/1.29 var(--font-text);--text-fine-print:400 12px/1 var(--font-text);--text-micro-legal:400 10px/1.3 var(--font-text);--text-nav-link:400 12px/1 var(--font-text);}}</style>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>TV360 Box - Truyền hình thông minh, điều khiển bằng giọng nói</title>
-<script src="./vendor/react.js"></script>
-<script src="./vendor/react-dom.js"></script>
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TV360 Box - Truyền hình thông minh thế hệ mới</title>
+<meta name="description" content="TV360 Box - truyền hình thông minh thế hệ mới, điều khiển bằng giọng nói.">
+<link rel="icon" href="assets/logo-white.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
 <style>
@@ -50,7 +45,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
 .step{transition:transform .3s ease}
 .step:hover{transform:translateX(6px)}
 .step:hover .step-num{color:#67b7ff !important}
-.plan{transition:transform .3s ease,box-shadow .3s ease}
+.plan{border:2px solid transparent;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.plan:hover{border-color:#2997ff}
 .plan:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(0,0,0,.6)}
 .tv-tab{transition:background .2s ease,color .2s ease,transform .2s ease}
 .tv-tab:hover{background:rgba(255,255,255,.2) !important;transform:translateY(-2px)}
@@ -68,7 +64,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
 .scene3d:hover .spin3d{animation-play-state:paused}
 .spin3d{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;animation:spin3d 18s linear infinite}
 .spin3d .p3{position:absolute;transform-style:preserve-3d}
-.tilt3d{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-12deg)}
+.tilt3d{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-22deg)}
 .poster{width:140px;height:200px;border-radius:12px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end;color:#ffffff;box-shadow:0 18px 30px rgba(0,0,0,.6);transition:transform .4s ease,filter .4s ease}
 .poster:hover{transform:scale(1.08);filter:brightness(1.2)}
 .poster b{font-size:15px;font-weight:700;letter-spacing:0;line-height:1.2}
@@ -97,6 +93,19 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
 .vh-ring2{animation-delay:1s}
 .vh-a{grid-area:1/1;animation:swapA 8s ease-in-out infinite}
 .vh-b{grid-area:1/1;animation:swapB 8s ease-in-out infinite}
+.bx3{position:absolute;left:-150px;top:-35px;width:300px;height:70px;transform-style:preserve-3d}
+.bx3>div{position:absolute;left:0;top:0;box-sizing:border-box;transform-origin:50% 50%}
+.bx3 .b-fr{width:300px;height:70px;transform:translateZ(150px);background:linear-gradient(180deg,#34343a,#141417);border-top:1px solid rgba(255,255,255,.18)}
+.bx3 .b-bk{width:300px;height:70px;transform:rotateY(180deg) translateZ(150px);background:linear-gradient(180deg,#34343a,#141417);border-top:1px solid rgba(255,255,255,.18)}
+.bx3 .b-rt{width:300px;height:70px;transform:rotateY(90deg) translateZ(150px);background:linear-gradient(180deg,#2b2b30,#0f0f11);border-top:1px solid rgba(255,255,255,.14)}
+.bx3 .b-lt{width:300px;height:70px;transform:rotateY(-90deg) translateZ(150px);background:linear-gradient(180deg,#2b2b30,#0f0f11);border-top:1px solid rgba(255,255,255,.14)}
+.bx3 .b-tp{top:-115px;width:300px;height:300px;transform:rotateX(90deg) translateZ(35px);background:radial-gradient(circle at 30% 25%,#45454c,#1c1c20 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.bx3 .b-bt{top:-115px;width:300px;height:300px;transform:rotateX(-90deg) translateZ(35px);background:#0b0b0d}
+.bx3 .b-led{position:absolute;right:26px;top:50%;width:9px;height:9px;margin-top:-4px;border-radius:50%;background:#2997ff;box-shadow:0 0 10px #2997ff,0 0 22px #2997ff;animation:ledpulse 2s ease-in-out infinite}
+.bx3 .b-edge{position:absolute;left:14%;right:14%;bottom:10px;height:3px;border-radius:2px;background:#e5322d;box-shadow:0 0 12px #e5322d,0 0 26px rgba(229,50,45,.85)}
+.bx3 .b-mic{position:relative;width:56px;height:56px;border-radius:50%;background:#0066cc;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(41,151,255,.8)}
+.foot-link{color:#cccccc;transition:color .2s ease}
+.foot-link:hover{color:#ffffff}
 .float3d{perspective:900px;animation:float 6s ease-in-out infinite;width:100%;display:flex;justify-content:center}
 .cube3d{position:relative;width:220px;height:56px;transform-style:preserve-3d;transform:rotateX(-16deg) rotateY(-30deg);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
 .cube3d:hover{transform:rotateX(-10deg) rotateY(34deg)}
@@ -115,13 +124,13 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
 .rnum:hover{background:#0066cc}
 .rmic{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff5a4e,#c71d14);box-shadow:0 3px 0 #7a0f0a;position:relative;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:10px;font-weight:700}
 </style>
-</helmet>
-
+</head>
+<body>
 <div style="width:100%;min-width:320px;background:#000000;font-family:'SF Pro Text','SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Inter,sans-serif;color:#ffffff;letter-spacing:-0.374px;font-size:17px;line-height:1.47">
 
 <!-- Global nav -->
 <nav style="background:rgba(0,0,0,0.8);height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;box-sizing:border-box;position:sticky;top:0;z-index:10;border-bottom:1px solid rgba(255,255,255,0.08)">
-  <a href="#" class="nav-link" style="display:flex;align-items:center;opacity:1"><img src="./assets/811fbcb4329d2da6ad11ee3386c8017d.png" alt="TV360" style="display:block;height:20px;width:auto"></a>
+  <a href="#" class="nav-link" style="display:flex;align-items:center;opacity:1"><img src="assets/logo-white.png" alt="TV360" style="display:block;height:20px;width:auto"></a>
   <div style="display:flex;gap:20px;align-items:center;font-size:12px;letter-spacing:-0.12px">
     <a href="#tinh-nang" class="nav-link" style="color:#ffffff">Tính năng</a>
     <a href="#tro-ly" class="nav-link" style="color:#ffffff">Trợ lý Tibo</a>
@@ -144,31 +153,25 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
     <div class="glow3d"></div>
     <div class="tilt3d">
       <div class="spin3d">
-        <div class="p3" style="left:-160px;top:-40px">
-          <div class="cube3d hc">
-            <div class="f f-front"><span class="box-mic"><span class="vh-ring"></span><span class="vh-ring vh-ring2"></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></span><span class="led"></span><span class="edge-light"></span>TV<span style="color:#e5322d">360</span></div>
-            <div class="f f-back"></div>
-            <div class="f f-right"></div>
-            <div class="f f-left"></div>
-            <div class="f f-top"></div>
-            <div class="f f-bottom"></div>
-            <div class="slab" style="transform:translateY(-30px) rotateX(90deg)"></div>
-            <div class="slab" style="transform:translateY(-20px) rotateX(90deg)"></div>
-            <div class="slab" style="transform:translateY(-10px) rotateX(90deg)"></div>
-            <div class="slab" style="transform:translateY(0px) rotateX(90deg)"></div>
-            <div class="slab" style="transform:translateY(10px) rotateX(90deg)"></div>
-            <div class="slab" style="transform:translateY(20px) rotateX(90deg)"></div>
-            <div class="slab" style="transform:translateY(30px) rotateX(90deg)"></div>
+        <div class="bx3">
+          <div class="b-fr"><span class="b-led"></span><span class="b-edge"></span></div>
+          <div class="b-bk"></div>
+          <div class="b-rt"></div>
+          <div class="b-lt"></div>
+          <div class="b-bt"></div>
+          <div class="b-tp">
+            <img src="assets/logo-white.png" alt="TV360" style="display:block;width:170px;height:auto">
+            <span class="b-mic"><span class="vh-ring"></span><span class="vh-ring vh-ring2"></span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></span>
           </div>
         </div>
-        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(0deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/784019a1dfde6b96998cb18dd7a10013.jpg" alt="Poster phim Mai"></div></div>
-        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(45deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/17a5a4cf05f30cbf76be9c1ca7724867.jpg" alt="Poster phim Mắt Biếc"></div></div>
-        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(90deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/b032fb9e555e690ab1c86ee809f1ad72.jpg" alt="Poster phim Mưa Đỏ"></div></div>
-        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(135deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/cd52e5a6b9bb0f2165d4f704ac5b0579.jpg" alt="Poster phim Đất Rừng Phương Nam"></div></div>
-        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(180deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/7952ef9e62e6cc99fb94c0d4127085e2.jpg" alt="Poster phim Tài"></div></div>
-        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(225deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/dd1672f6f8358b1f06dc660cb6cabc86.jpg" alt="Poster phim Đảo Độc Đắc"></div></div>
-        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(270deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/88d7b4e3170a72a672c3dce7d51022db.jpg" alt="Poster phim Trạng Quỳnh"></div></div>
-        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(315deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/11de7a8b9f4332ff834d046d5923bbc8.jpg" alt="Poster phim Chuỗi Ngày Cô Đơn"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(0deg) translateZ(400px)"><div class="poster hposter"><img src="assets/poster-mai.jpg" alt="Poster phim Mai"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(45deg) translateZ(400px)"><div class="poster hposter"><img src="assets/poster-matbiec.jpg" alt="Poster phim Mắt Biếc"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(90deg) translateZ(400px)"><div class="poster hposter"><img src="assets/poster-muado.jpg" alt="Poster phim Mưa Đỏ"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(135deg) translateZ(400px)"><div class="poster hposter"><img src="assets/poster-datrung.jpg" alt="Poster phim Đất Rừng Phương Nam"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(180deg) translateZ(400px)"><div class="poster hposter"><img src="assets/poster-tai.jpg" alt="Poster phim Tài"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(225deg) translateZ(400px)"><div class="poster hposter"><img src="assets/poster-daodocdac.jpg" alt="Poster phim Đảo Độc Đắc"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(270deg) translateZ(400px)"><div class="poster hposter"><img src="assets/poster-trangquynh.jpg" alt="Poster phim Trạng Quỳnh"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(315deg) translateZ(400px)"><div class="poster hposter"><img src="assets/poster-chuoingay.jpg" alt="Poster phim Chuỗi Ngày Cô Đơn"></div></div>
       </div>
     </div>
   </div>
@@ -203,40 +206,32 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
   <!-- TV mockup -->
   <div style="max-width:960px;margin:48px auto 0;background:#000000;border-radius:18px;padding:24px;box-sizing:border-box;text-align:left;box-shadow:0 30px 60px rgba(0,0,0,.5)">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
-      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
-        <button class="tv-tab" onClick="{{ t.pick }}" style="background:{{ t.bg }};color:{{ t.fg }};border:none;border-radius:9999px;padding:8px 16px;font-size:14px;font-weight:600;letter-spacing:-0.224px">{{ t.label }}</button>
-      </sc-for>
+      <span id="tvTabs" style="display:contents"></span>
     </div>
 
-    <div style="position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:{{ featBg }};box-sizing:border-box;padding:40px;display:flex;flex-direction:column;justify-content:flex-end">
-      <div class="slide-text" style="max-width:520px">
-        <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:-0.224px;color:#ffffff;opacity:.85">{{ featTag }}</p>
-        <h3 style="margin:0 0 8px;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0;color:#ffffff">{{ featTitle }}</h3>
-        <p style="margin:0;font-size:21px;line-height:1.19;letter-spacing:0.231px;color:#ffffff;opacity:.9">{{ featSub }}</p>
+    <div id="featBox" style="position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/9;box-sizing:border-box;padding:40px;display:flex;flex-direction:column;justify-content:flex-end">
+      <div id="featText" class="slide-text" style="max-width:520px">
+        <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:-0.224px;color:#ffffff;opacity:.85"><span id="featTag"></span></p>
+        <h3 style="margin:0 0 8px;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0;color:#ffffff"><span id="featTitle"></span></h3>
+        <p style="margin:0;font-size:21px;line-height:1.19;letter-spacing:0.231px;color:#ffffff;opacity:.9"><span id="featSub"></span></p>
       </div>
       <div style="position:absolute;right:40px;top:40px;display:flex;gap:8px">
-        <sc-for list="{{ dots }}" as="d" hint-placeholder-count="3">
-          <button class="tv-dot" onClick="{{ d.pick }}" aria-label="Slide" style="width:{{ d.w }};height:8px;border-radius:9999px;border:none;background:{{ d.bg }};padding:0"></button>
-        </sc-for>
+        <span id="tvDots" style="display:contents"></span>
       </div>
     </div>
 
     <div style="display:flex;gap:12px;overflow:hidden;margin-top:20px;padding:12px 0">
-      <sc-for list="{{ tiles }}" as="it" hint-placeholder-count="6">
-        <div class="tv-tile" style="flex:0 0 auto;width:140px;height:84px;border-radius:8px;background:{{ it.c }};display:flex;align-items:flex-end;padding:8px;box-sizing:border-box">
-          <span style="font-size:12px;font-weight:600;letter-spacing:-0.12px;color:#ffffff">{{ it.t }}</span>
-        </div>
-      </sc-for>
+      <span id="tvTiles" style="display:contents"></span>
     </div>
 
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:12px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px">
       <div style="display:flex;align-items:center;gap:12px">
         <span class="mic-dot"></span>
-        <span style="font-size:17px;color:#cccccc">Bạn nói: <span style="color:#ffffff;font-weight:600">{{ voice }}</span></span>
+        <span style="font-size:17px;color:#cccccc">Bạn nói: <span style="color:#ffffff;font-weight:600"><span id="voice"></span></span></span>
       </div>
       <div style="display:flex;gap:8px">
-        <button class="remote-btn" onClick="{{ prev }}" aria-label="Kênh trước" style="background:#272729;color:#ffffff;border:none;border-radius:9999px;width:44px;height:44px;font-size:18px">←</button>
-        <button class="remote-btn" onClick="{{ next }}" aria-label="Kênh sau" style="background:#272729;color:#ffffff;border:none;border-radius:9999px;width:44px;height:44px;font-size:18px">→</button>
+        <button class="remote-btn" id="tvPrev" aria-label="Kênh trước" style="background:#272729;color:#ffffff;border:none;border-radius:9999px;width:44px;height:44px;font-size:18px">←</button>
+        <button class="remote-btn" id="tvNext" aria-label="Kênh sau" style="background:#272729;color:#ffffff;border:none;border-radius:9999px;width:44px;height:44px;font-size:18px">→</button>
       </div>
     </div>
   </div>
@@ -270,17 +265,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
   <p style="margin:16px auto 0;max-width:720px;font-size:21px;line-height:1.19;letter-spacing:0.231px;color:#cccccc">Hộp TV360 Box kết nối với tivi. Điều khiển có nút trợ lý giọng nói để bạn nói thay cho việc bấm.</p>
   <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1000px;margin:48px auto 0;text-align:left">
     <div class="feat" style="background:#000000;border-radius:18px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:24px;min-height:560px;box-sizing:border-box">
-      <div style="display:flex;align-items:center;justify-content:center;flex:1;width:100%;min-height:300px" role="img" aria-label="Mô phỏng 3D hộp TV360 Box">
-        <div class="float3d">
-          <div class="cube3d">
-            <div class="f f-front">TV<span style="color:#e5322d">360</span></div>
-            <div class="f f-back"></div>
-            <div class="f f-right"></div>
-            <div class="f f-left"></div>
-            <div class="f f-top"><span style="background:#ffffff;color:#1d1d1f;font-size:9px;font-weight:600;padding:6px 10px;border-radius:4px">TV360 Box</span></div>
-            <div class="f f-bottom"></div>
-          </div>
-        </div>
+      <div style="display:flex;align-items:center;justify-content:center;flex:1;width:100%;min-height:300px">
+        <img class="device-img" src="assets/box.png" alt="Hộp TV360 Box" style="display:block;width:100%;max-width:320px;height:auto;filter:drop-shadow(0 24px 30px rgba(0,0,0,.7))">
       </div>
       <div style="text-align:center">
         <h3 style="margin:0 0 8px;font-size:21px;font-weight:600;letter-spacing:0.231px">Hộp TV360 Box</h3>
@@ -288,7 +274,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
       </div>
     </div>
     <div class="feat" style="background:#000000;border-radius:18px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:24px;min-height:560px;box-sizing:border-box">
-      <div class="remote3d" role="img" aria-label="Mô phỏng 3D điều khiển, nút trợ lý giọng nói màu đỏ">
+      <div style="position:relative;height:480px;aspect-ratio:164/713">
+        <img src="assets/remote.png" alt="Điều khiển TV360 với nút trợ lý giọng nói" style="display:block;width:100%;height:100%;filter:drop-shadow(0 24px 30px rgba(0,0,0,.7))">
+        <span class="voice-ring" style="position:absolute;left:49.7%;top:57.6%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:2px solid #2997ff;box-sizing:border-box"></span>
+      </div>
+      <div style="display:none">
         <div style="display:flex;justify-content:space-between;align-items:center">
           <span class="rnum" style="width:20px;height:20px;color:#ff5a4e">●</span>
           <span class="rb" style="width:34px">TV</span>
@@ -336,18 +326,16 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
     <h3 style="margin:0 0 8px;font-size:28px;font-weight:600;line-height:1.14;letter-spacing:0.196px">Nói là làm</h3>
     <p style="margin:0 0 24px;font-size:17px;color:#cccccc">Chọn một câu lệnh để xem Tibo phản hồi như thế nào.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-      <sc-for list="{{ cmds }}" as="c" hint-placeholder-count="5">
-        <button class="tv-tab" onClick="{{ c.pick }}" style="background:{{ c.bg }};color:{{ c.fg }};border:none;border-radius:9999px;padding:10px 18px;font-size:14px;font-weight:600;letter-spacing:-0.224px">{{ c.say }}</button>
-      </sc-for>
+      <span id="cmdBtns" style="display:contents"></span>
     </div>
     <div style="margin:24px auto 0;max-width:640px;background:#000000;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:16px;text-align:left">
       <div style="align-self:flex-end;background:#0066cc;color:#ffffff;border-radius:18px 18px 4px 18px;padding:12px 16px;max-width:80%">
         <span style="font-size:12px;opacity:.85">Bạn nói</span>
-        <div style="font-size:17px">{{ userSay }}</div>
+        <div style="font-size:17px"><span id="userSay"></span></div>
       </div>
       <div class="slide-text" style="align-self:flex-start;background:#272729;color:#ffffff;border-radius:18px 18px 18px 4px;padding:12px 16px;max-width:80%">
         <span style="font-size:12px;color:#cccccc">Tibo</span>
-        <div style="font-size:17px">{{ reply }}</div>
+        <div style="font-size:17px"><span id="reply"></span></div>
       </div>
     </div>
   </div>
@@ -378,7 +366,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
 <!-- Packages (dark gray) -->
 <section id="goi-cuoc" style="background:#272729;padding:80px 24px;box-sizing:border-box;text-align:center">
   <h2 style="margin:0 auto;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0">Chọn gói dịch vụ</h2>
-  <p style="margin:16px auto 0;font-size:21px;line-height:1.19;letter-spacing:0.231px;color:#cccccc">[MÔ TẢ GÓI - CẦN BỔ SUNG]</p>
   <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1080px;margin:48px auto 0;text-align:left">
     <div class="plan" style="background:#000000;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
       <h3 style="margin:0;font-size:21px;font-weight:600;letter-spacing:0.231px">Standard</h3>
@@ -429,7 +416,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
       </ul>
       <a href="#lien-he" class="btn-primary" style="margin-top:8px;background:#0066cc;color:#ffffff;border-radius:9999px;padding:11px 22px;text-align:center;font-size:17px">Đăng ký</a>
     </div>
-    <div class="plan" style="background:#000000;border:2px solid #2997ff;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+    <div class="plan" style="background:#000000;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
       <h3 style="margin:0;font-size:21px;font-weight:600;letter-spacing:0.231px">VIP</h3>
       <p style="margin:0;font-size:14px;color:#cccccc">Chỉ từ</p>
       <p style="margin:0;font-size:34px;font-weight:600;letter-spacing:-0.374px">80.000đ</p>
@@ -495,40 +482,31 @@ a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2p
 
 <!-- Footer (black) -->
 <footer style="background:#000000;padding:48px 24px 64px;box-sizing:border-box;color:#cccccc;border-top:1px solid rgba(255,255,255,0.08)">
-  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px">
-    <div>
-      <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:-0.224px;color:#ffffff">Trung tâm Dịch vụ Truyền hình TV360</p>
-      <p style="margin:0;font-size:14px;letter-spacing:-0.224px">[ĐỊA CHỈ - CẦN BỔ SUNG]</p>
-    </div>
-    <div>
-      <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:-0.224px;color:#ffffff">Liên hệ</p>
-      <p style="margin:0;font-size:14px;letter-spacing:-0.224px">Tổng đài: 1800 9168 / 1800 8119</p>
-    </div>
-    <div>
-      <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:-0.224px;color:#ffffff">Thông tin</p>
-      <p style="margin:0;font-size:14px;letter-spacing:-0.224px">[CHÍNH SÁCH - CẦN BỔ SUNG]</p>
-    </div>
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+    <img src="assets/logo-white.png" alt="TV360" style="display:block;height:32px;width:auto">
+    <nav style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px;letter-spacing:-0.224px">
+      <a href="#" class="foot-link">Tin tức</a>
+      <a href="#" class="foot-link">Giới thiệu</a>
+      <a href="#" class="foot-link">Hợp đồng dịch vụ TV360</a>
+      <a href="#" class="foot-link">Văn bản chấp thuận về xử lý và bảo vệ dữ liệu cá nhân</a>
+      <a href="#" class="foot-link">Liên hệ</a>
+      <a href="#" class="foot-link">Hướng dẫn</a>
+    </nav>
+  </div>
+  <div style="max-width:1080px;margin:32px auto 0;font-size:14px;line-height:1.8;letter-spacing:-0.224px;color:#cccccc">
+    <p style="margin:0">Cơ quan chủ quản: Tập đoàn Công nghiệp - Viễn thông Quân đội.</p>
+    <p style="margin:0">Địa chỉ: Lô D26 khu đô thị mới Cầu Giấy, phường Yên Hòa, quận Cầu Giấy, TP Hà Nội, Việt Nam.</p>
+    <p style="margin:0">Tổng đài chăm sóc khách hàng: 18008119 (miễn phí).</p>
+    <p style="margin:0">Đăng ký kinh doanh: số 0100109106 đăng ký lần đầu ngày 13 tháng 07 năm 2010.</p>
+    <p style="margin:0">Giấy phép số: 591/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 15/12/2020.</p>
   </div>
   <p style="max-width:1080px;margin:32px auto 0;font-size:12px;letter-spacing:-0.12px;color:#7a7a7a">Giá và quyền lợi có thể thay đổi theo từng thời kỳ. Vui lòng liên hệ tổng đài để biết thông tin chi tiết.</p>
 </footer>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5200}}'>
-class Component extends DCLogic {
-componentDidMount() {
-this.timer = setInterval(() => {
-this.setState((s) => ({ slide: ((s.slide ?? 0) + 1) % 3, cmd: ((s.cmd ?? 0) + 1) % 5 }));
-}, 4000);
-}
-componentWillUnmount() {
-clearInterval(this.timer);
-}
-renderVals() {
-const tab = this.state.tab ?? 0;
-const slide = this.state.slide ?? 0;
-const cmd = this.state.cmd ?? 0;
-
+<script>
+(function(){
+var state={tab:0,slide:0,cmd:0};
 const CMDS = [
   { say: 'Tìm phim hành động', reply: 'Đây là các phim hành động mới nhất.' },
   { say: 'Mở kênh VTV1', reply: 'Đang chuyển đến kênh VTV1.' },
@@ -557,37 +535,32 @@ const TILES = [
   [ { t: 'VTV1', c: '#2a3c5c' }, { t: 'VTV3', c: '#2e4a6e' }, { t: 'HBO', c: '#1c1c1e' }, { t: 'Cinemax', c: '#2a2a2c' }, { t: 'K+', c: '#3c2c5c' }, { t: 'HTV', c: '#2c4c3c' } ],
 ];
 
-return {
-  tabs: TABS.map((t, i) => ({
-    label: t.label,
-    fg: i === tab ? '#000000' : '#ffffff',
-    bg: i === tab ? '#ffffff' : 'rgba(255,255,255,0.1)',
-    pick: () => this.setState({ tab: i }),
-  })),
-  voice: TABS[tab].voice,
-  cmds: CMDS.map((c, i) => ({
-    say: c.say,
-    bg: i === cmd ? '#ffffff' : 'rgba(255,255,255,0.1)',
-    fg: i === cmd ? '#000000' : '#ffffff',
-    pick: () => this.setState({ cmd: i }),
-  })),
-  userSay: CMDS[cmd].say,
-  reply: CMDS[cmd].reply,
-  tiles: TILES[tab],
-  featTag: SLIDES[slide].tag,
-  featTitle: SLIDES[slide].title,
-  featSub: SLIDES[slide].sub,
-  featBg: SLIDES[slide].bg,
-  dots: SLIDES.map((s, i) => ({
-    w: i === slide ? '28px' : '8px',
-    bg: i === slide ? '#ffffff' : 'rgba(255,255,255,0.5)',
-    pick: () => this.setState({ slide: i }),
-  })),
-  next: () => this.setState((s) => ({ tab: ((s.tab ?? 0) + 1) % TABS.length })),
-  prev: () => this.setState((s) => ({ tab: ((s.tab ?? 0) + TABS.length - 1) % TABS.length })),
-};
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function $(id){return document.getElementById(id);}
+function render(){
+  $('tvTabs').innerHTML=TABS.map(function(t,i){var on=i===state.tab;return '<button class="tv-tab" data-tab="'+i+'" style="background:'+(on?'#ffffff':'rgba(255,255,255,0.1)')+';color:'+(on?'#000000':'#ffffff')+';border:none;border-radius:9999px;padding:8px 16px;font-size:14px;font-weight:600;letter-spacing:-0.224px">'+esc(t.label)+'</button>';}).join('');
+  $('tvTiles').innerHTML=TILES[state.tab].map(function(it){return '<div class="tv-tile" style="flex:0 0 auto;width:140px;height:84px;border-radius:8px;background:'+it.c+';display:flex;align-items:flex-end;padding:8px;box-sizing:border-box"><span style="font-size:12px;font-weight:600;letter-spacing:-0.12px;color:#ffffff">'+esc(it.t)+'</span></div>';}).join('');
+  $('voice').textContent=TABS[state.tab].voice;
+  var s=SLIDES[state.slide];
+  $('featBox').style.background=s.bg; $('featTag').textContent=s.tag; $('featTitle').textContent=s.title; $('featSub').textContent=s.sub;
+  var ft=$('featText'); ft.classList.remove('slide-text'); void ft.offsetWidth; ft.classList.add('slide-text');
+  $('tvDots').innerHTML=SLIDES.map(function(x,i){var on=i===state.slide;return '<button class="tv-dot" data-dot="'+i+'" aria-label="Slide '+(i+1)+'" style="width:'+(on?'28px':'8px')+';height:8px;border-radius:9999px;border:none;background:'+(on?'#ffffff':'rgba(255,255,255,0.5)')+';padding:0"></button>';}).join('');
+  $('cmdBtns').innerHTML=CMDS.map(function(c,i){var on=i===state.cmd;return '<button class="tv-tab" data-cmd="'+i+'" style="background:'+(on?'#ffffff':'rgba(255,255,255,0.1)')+';color:'+(on?'#000000':'#ffffff')+';border:none;border-radius:9999px;padding:10px 18px;font-size:14px;font-weight:600;letter-spacing:-0.224px">'+esc(c.say)+'</button>';}).join('');
+  $('userSay').textContent=CMDS[state.cmd].say; $('reply').textContent=CMDS[state.cmd].reply;
 }
-}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.tab) state.tab=+b.dataset.tab;
+  else if(b.dataset.dot) state.slide=+b.dataset.dot;
+  else if(b.dataset.cmd) state.cmd=+b.dataset.cmd;
+  else if(b.id==='tvNext') state.tab=(state.tab+1)%TABS.length;
+  else if(b.id==='tvPrev') state.tab=(state.tab+TABS.length-1)%TABS.length;
+  else return;
+  render();
+});
+setInterval(function(){state.slide=(state.slide+1)%SLIDES.length;state.cmd=(state.cmd+1)%CMDS.length;render();},4000);
+render();
+})();
 </script>
 </body>
 </html>
