@@ -1,0 +1,23 @@
+HƯỚNG DẪN NỐI FORM "ĐĂNG KÝ LẮP ĐẶT" VỚI GOOGLE SHEET (làm 1 lần, khoảng 3 phút)
+
+Google Sheet nhận lead:
+https://docs.google.com/spreadsheets/d/1hdpmvn0oktAa-1aXw-KQfgn79prvT0mzxmSUKjSYyaw/edit
+
+BƯỚC 1. Mở Google Sheet trên, chọn menu: Tiện ích mở rộng > Apps Script.
+BƯỚC 2. Xoá đoạn code mặc định, dán toàn bộ nội dung file google-apps-script.gs vào, bấm Lưu.
+BƯỚC 3. Bấm Triển khai (Deploy) > Tùy chọn triển khai mới (New deployment).
+        - Chọn loại: Ứng dụng web (Web app)
+        - Thực thi dưới dạng (Execute as): Tôi (Me)
+        - Người có quyền truy cập (Who has access): Bất kỳ ai (Anyone)
+        Bấm Triển khai, cấp quyền khi Google hỏi (chọn tài khoản > Nâng cao > Đi tới dự án > Cho phép).
+BƯỚC 4. Sao chép "URL ứng dụng web" (dạng https://script.google.com/macros/s/XXXX/exec).
+BƯỚC 5. Mở index.html, tìm dòng:
+            var LEAD_ENDPOINT = '';
+        dán URL vào giữa hai dấu nháy, ví dụ:
+            var LEAD_ENDPOINT = 'https://script.google.com/macros/s/XXXX/exec';
+BƯỚC 6. Up lại thư mục lên Vercel. Mỗi lần khách bấm "Gửi đăng ký", một dòng mới sẽ xuất hiện trong Sheet.
+
+Lưu ý:
+- Nếu sửa code Apps Script sau này: Triển khai > Quản lý triển khai > sửa > Phiên bản mới, để URL giữ nguyên.
+- Khi LEAD_ENDPOINT còn trống, form vẫn hiện "Đăng ký thành công" nhưng KHÔNG lưu lead.
+- Không cần upload 2 file .gs và .txt này lên Vercel (để cũng không sao).
