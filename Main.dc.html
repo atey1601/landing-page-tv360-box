@@ -1,0 +1,593 @@
+<!doctype html>
+<meta charset="utf-8"><style data-dc-design-system-vars>@layer{:root{--primary:#0066cc;--primary-focus:#0071e3;--primary-on-dark:#2997ff;--canvas:#ffffff;--canvas-parchment:#f5f5f7;--surface-pearl:#fafafc;--surface-tile-1:#272729;--surface-tile-2:#2a2a2c;--surface-tile-3:#252527;--surface-black:#000000;--surface-chip-translucent:#d2d2d7a3;--ink:#1d1d1f;--body-on-dark:#ffffff;--body-muted:#cccccc;--ink-muted-80:#333333;--ink-muted-48:#7a7a7a;--divider-soft:#f0f0f0;--hairline:#e0e0e0;--shadow-product:rgba(0, 0, 0, 0.22) 3px 5px 30px 0;--space-xxs:4px;--space-xs:8px;--space-sm:12px;--space-md:17px;--space-lg:24px;--space-xl:32px;--space-xxl:48px;--space-section:80px;--radius-none:0px;--radius-xs:5px;--radius-sm:8px;--radius-md:11px;--radius-lg:18px;--radius-pill:9999px;--radius-full:50%;--font-display:"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;--font-text:"SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;--text-hero-display:600 56px/1.07 var(--font-display);--text-display-lg:600 40px/1.1 var(--font-display);--text-display-md:600 34px/1.47 var(--font-text);--text-lead:400 28px/1.14 var(--font-text);--text-lead-airy:300 24px/1.5 var(--font-text);--text-tagline:600 21px/1.19 var(--font-text);--text-body-strong:600 17px/1.24 var(--font-text);--text-body:400 17px/1.47 var(--font-text);--text-dense-link:400 17px/2.41 var(--font-text);--text-caption:400 14px/1.43 var(--font-text);--text-caption-strong:600 14px/1.29 var(--font-text);--text-button-large:300 18px/1 var(--font-text);--text-button-utility:400 14px/1.29 var(--font-text);--text-fine-print:400 12px/1 var(--font-text);--text-micro-legal:400 10px/1.3 var(--font-text);--text-nav-link:400 12px/1 var(--font-text);}}</style>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>TV360 Box - Truyền hình thông minh, điều khiển bằng giọng nói</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#000000}
+a{color:#2997ff;text-decoration:none;transition:color .2s ease}
+a:hover{color:#67b7ff}
+button{font-family:inherit;cursor:pointer}
+button:active{transform:scale(.95)}
+a:focus-visible,button:focus-visible{outline:2px solid #0071e3;outline-offset:2px}
+
+/* Entrance animation, plays on load */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(41,151,255,.6)}70%{box-shadow:0 0 0 12px rgba(41,151,255,0)}100%{box-shadow:0 0 0 0 rgba(41,151,255,0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.reveal{animation:fadeUp .8s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}
+.hero-img{animation:float 6s ease-in-out infinite;transition:transform .4s ease}
+.hero-img:hover{transform:scale(1.04)}
+.marquee{overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.marquee-track{display:inline-flex;animation:marquee 26s linear infinite}
+.marquee-track span{padding:18px 28px;font-size:21px;font-weight:600;letter-spacing:0.231px;color:#cccccc}
+.marquee-track span i{font-style:normal;color:#2997ff;margin-left:28px}
+.mic-dot{width:10px;height:10px;border-radius:50%;background:#2997ff;display:inline-block;animation:pulse 1.8s ease-out infinite}
+.slide-text{animation:slideIn .5s ease both}
+
+/* Hover effects */
+.btn-primary{transition:background .2s ease,transform .2s ease}
+.btn-primary:hover{background:#0071e3 !important;transform:translateY(-2px)}
+.btn-ghost{transition:background .2s ease,transform .2s ease}
+.btn-ghost:hover{background:rgba(41,151,255,.14) !important;transform:translateY(-2px)}
+.nav-link{transition:color .2s ease,opacity .2s ease;opacity:.85}
+.nav-link:hover{opacity:1;color:#2997ff !important}
+.feat{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.feat:hover{transform:translateY(-6px);border-color:rgba(41,151,255,.7) !important;box-shadow:0 22px 44px rgba(0,0,0,.55)}
+.step{transition:transform .3s ease}
+.step:hover{transform:translateX(6px)}
+.step:hover .step-num{color:#67b7ff !important}
+.plan{transition:transform .3s ease,box-shadow .3s ease}
+.plan:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(0,0,0,.6)}
+.tv-tab{transition:background .2s ease,color .2s ease,transform .2s ease}
+.tv-tab:hover{background:rgba(255,255,255,.2) !important;transform:translateY(-2px)}
+.remote-btn{transition:background .2s ease,transform .15s ease}
+.remote-btn:hover{background:#0066cc !important;transform:scale(1.06)}
+.tv-tile{transition:transform .35s cubic-bezier(.2,.7,.2,1),filter .35s ease,box-shadow .35s ease;position:relative}
+.tv-tile:hover{transform:scale(1.07);z-index:2;filter:brightness(1.25);box-shadow:0 14px 30px rgba(0,0,0,.7)}
+.tv-dot{transition:background .25s ease,transform .25s ease}
+.tv-dot:hover{transform:scale(1.25)}
+.device-img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.device-wrap:hover .device-img{transform:scale(1.03)}
+.voice-ring{animation:pulse 1.8s ease-out infinite;pointer-events:none}
+@keyframes spin3d{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+.scene3d{position:relative;width:100%;height:440px;perspective:1400px}
+.scene3d:hover .spin3d{animation-play-state:paused}
+.spin3d{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;animation:spin3d 18s linear infinite}
+.spin3d .p3{position:absolute;transform-style:preserve-3d}
+.tilt3d{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-12deg)}
+.poster{width:140px;height:200px;border-radius:12px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end;color:#ffffff;box-shadow:0 18px 30px rgba(0,0,0,.6);transition:transform .4s ease,filter .4s ease}
+.poster:hover{transform:scale(1.08);filter:brightness(1.2)}
+.poster b{font-size:15px;font-weight:700;letter-spacing:0;line-height:1.2}
+.poster i{font-style:normal;font-size:11px;opacity:.8;margin-top:4px}
+.hc{width:320px;height:80px;transform:rotateX(-14deg) rotateY(-28deg)}
+.hc:hover{transform:rotateX(-8deg) rotateY(30deg)}
+.hc .f{font-size:30px}
+.hc .f-front{width:320px;height:80px;transform:translateZ(160px);background:linear-gradient(180deg,#34343a,#141417)}
+.hc .f-back{width:320px;height:80px;transform:rotateY(180deg) translateZ(159px);background:linear-gradient(180deg,#2a2a2f,#121214)}
+.hc .f-right{width:320px;height:80px;transform:rotateY(90deg) translateZ(159px);background:linear-gradient(180deg,#26262b,#101012)}
+.hc .f-left{width:320px;height:80px;transform:rotateY(-90deg) translateZ(159px);background:linear-gradient(180deg,#26262b,#101012)}
+.hc .f-top{top:-120px;width:320px;height:320px;transform-origin:50% 50%;transform:translateY(-40px) rotateX(90deg);background:linear-gradient(135deg,#46464d,#24242a)}
+.hc .f-bottom{top:-120px;width:320px;height:320px;transform-origin:50% 50%;transform:translateY(40px) rotateX(90deg);background:#1a1a1e}
+.hc .slab{position:absolute;left:0;top:-120px;width:320px;height:320px;transform-origin:50% 50%;background:#1c1c20;border-radius:2px}
+.led{position:absolute;right:30px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#2997ff;box-shadow:0 0 10px #2997ff,0 0 24px #2997ff;animation:ledpulse 2s ease-in-out infinite}
+.edge-light{position:absolute;left:12%;right:12%;bottom:12px;height:3px;border-radius:2px;background:#e5322d;box-shadow:0 0 12px #e5322d,0 0 28px rgba(229,50,45,.85)}
+@keyframes ledpulse{0%,100%{opacity:.35}50%{opacity:1}}
+.glow3d{position:absolute;left:50%;top:50%;width:600px;height:320px;margin:-160px 0 0 -300px;background:radial-gradient(ellipse at center,rgba(229,50,45,.45) 0%,rgba(229,50,45,0) 65%);filter:blur(18px);pointer-events:none}
+.hposter{width:120px;height:160px;padding:0;overflow:hidden;opacity:.75}
+.hposter img{display:block;width:100%;height:100%;object-fit:cover}
+.box-mic{position:absolute;left:26px;top:50%;width:40px;height:40px;margin-top:-20px;border-radius:50%;background:#0066cc;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(41,151,255,.8)}
+@keyframes vhring{from{transform:scale(1);opacity:.8}to{transform:scale(2.4);opacity:0}}
+@keyframes swapA{0%,45%{opacity:1}50%,95%{opacity:0}100%{opacity:1}}
+@keyframes swapB{0%,45%{opacity:0}50%,95%{opacity:1}100%{opacity:0}}
+.vh-ring{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:50%;border:2px solid #2997ff;box-sizing:border-box;animation:vhring 2s ease-out infinite}
+.vh-ring2{animation-delay:1s}
+.vh-a{grid-area:1/1;animation:swapA 8s ease-in-out infinite}
+.vh-b{grid-area:1/1;animation:swapB 8s ease-in-out infinite}
+.float3d{perspective:900px;animation:float 6s ease-in-out infinite;width:100%;display:flex;justify-content:center}
+.cube3d{position:relative;width:220px;height:56px;transform-style:preserve-3d;transform:rotateX(-16deg) rotateY(-30deg);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.cube3d:hover{transform:rotateX(-10deg) rotateY(34deg)}
+.cube3d .f{position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:15px;font-weight:700;letter-spacing:0.5px;backface-visibility:visible;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.f-front{width:220px;height:56px;transform:translateZ(110px);background:linear-gradient(180deg,#2d2d31,#17171a)}
+.f-back{width:220px;height:56px;transform:rotateY(180deg) translateZ(110px);background:#111113}
+.f-right{width:220px;height:56px;transform:rotateY(90deg) translateZ(110px);background:#1a1a1d}
+.f-left{width:220px;height:56px;transform:rotateY(-90deg) translateZ(110px);background:#141416}
+.f-top{top:-82px;width:220px;height:220px;transform:rotateX(90deg) translateZ(28px);background:linear-gradient(135deg,#3b3b40,#1f1f23)}
+.f-bottom{top:-82px;width:220px;height:220px;transform:rotateX(-90deg) translateZ(28px);background:#0c0c0e}
+.remote3d{width:130px;height:480px;border-radius:34px;background:linear-gradient(160deg,#2e2e33,#141416);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),-16px 22px 34px rgba(0,0,0,.6);padding:18px 14px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;transform:perspective(900px) rotateY(-14deg) rotateX(4deg);transition:transform .6s ease}
+.remote3d:hover{transform:perspective(900px) rotateY(-4deg) rotateX(2deg)}
+.rb{background:linear-gradient(180deg,#36363b,#1f1f22);border-radius:9px;color:#e8e8ea;font-size:8px;display:flex;align-items:center;justify-content:center;height:20px;box-shadow:0 2px 0 #0a0a0c;transition:background .2s ease}
+.rb:hover{background:#0066cc}
+.rnum{width:26px;height:26px;border-radius:50%;background:linear-gradient(180deg,#36363b,#1f1f22);color:#ffffff;font-size:11px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 0 #0a0a0c;transition:background .2s ease}
+.rnum:hover{background:#0066cc}
+.rmic{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff5a4e,#c71d14);box-shadow:0 3px 0 #7a0f0a;position:relative;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:10px;font-weight:700}
+</style>
+</helmet>
+
+<div style="width:100%;min-width:320px;background:#000000;font-family:'SF Pro Text','SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Inter,sans-serif;color:#ffffff;letter-spacing:-0.374px;font-size:17px;line-height:1.47">
+
+<!-- Global nav -->
+<nav style="background:rgba(0,0,0,0.8);height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;box-sizing:border-box;position:sticky;top:0;z-index:10;border-bottom:1px solid rgba(255,255,255,0.08)">
+  <a href="#" class="nav-link" style="display:flex;align-items:center;opacity:1"><img src="./assets/811fbcb4329d2da6ad11ee3386c8017d.png" alt="TV360" style="display:block;height:20px;width:auto"></a>
+  <div style="display:flex;gap:20px;align-items:center;font-size:12px;letter-spacing:-0.12px">
+    <a href="#tinh-nang" class="nav-link" style="color:#ffffff">Tính năng</a>
+    <a href="#tro-ly" class="nav-link" style="color:#ffffff">Trợ lý Tibo</a>
+    <a href="#goi-cuoc" class="nav-link" style="color:#ffffff">Gói dịch vụ</a>
+    <a href="#lien-he" class="nav-link" style="color:#ffffff">Liên hệ</a>
+  </div>
+  <a href="tel:18009168" class="nav-link" style="color:#2997ff;font-size:12px">Hotline 1800 9168</a>
+</nav>
+
+<!-- Hero (black) -->
+<section style="background:#000000;padding:80px 24px 0;text-align:center;box-sizing:border-box;overflow:hidden">
+  <p class="reveal" style="margin:0 0 12px;font-size:21px;font-weight:600;letter-spacing:0.231px;color:#cccccc">TV360 Box</p>
+  <h1 class="reveal d1" style="margin:0 auto;max-width:980px;font-size:56px;font-weight:600;line-height:1.07;letter-spacing:-0.28px;color:#ffffff">Truyền hình thông minh thế hệ mới.</h1>
+  <p class="reveal d2" style="margin:16px auto 0;max-width:720px;font-size:24px;font-weight:400;line-height:1.3;letter-spacing:0.196px;color:#cccccc">Biến chiếc tivi nhà bạn thành màn hình giải trí thông minh, điều khiển bằng giọng nói ngay trên remote.</p>
+  <div class="reveal d3" style="display:flex;gap:16px;justify-content:center;margin-top:24px">
+    <a href="#lien-he" class="btn-primary" style="background:#0066cc;color:#ffffff;border-radius:9999px;padding:11px 22px;font-size:17px;font-weight:400">Đăng ký ngay</a>
+    <a href="#tinh-nang" class="btn-ghost" style="background:transparent;color:#2997ff;border:1px solid #2997ff;border-radius:9999px;padding:10px 21px;font-size:17px;font-weight:400">Tìm hiểu thêm</a>
+  </div>
+  <div class="scene3d reveal d4" role="img" aria-label="Mô phỏng 3D hộp TV360 Box có đèn, tính năng giọng nói" style="margin-top:24px">
+    <div class="glow3d"></div>
+    <div class="tilt3d">
+      <div class="spin3d">
+        <div class="p3" style="left:-160px;top:-40px">
+          <div class="cube3d hc">
+            <div class="f f-front"><span class="box-mic"><span class="vh-ring"></span><span class="vh-ring vh-ring2"></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></span><span class="led"></span><span class="edge-light"></span>TV<span style="color:#e5322d">360</span></div>
+            <div class="f f-back"></div>
+            <div class="f f-right"></div>
+            <div class="f f-left"></div>
+            <div class="f f-top"></div>
+            <div class="f f-bottom"></div>
+            <div class="slab" style="transform:translateY(-30px) rotateX(90deg)"></div>
+            <div class="slab" style="transform:translateY(-20px) rotateX(90deg)"></div>
+            <div class="slab" style="transform:translateY(-10px) rotateX(90deg)"></div>
+            <div class="slab" style="transform:translateY(0px) rotateX(90deg)"></div>
+            <div class="slab" style="transform:translateY(10px) rotateX(90deg)"></div>
+            <div class="slab" style="transform:translateY(20px) rotateX(90deg)"></div>
+            <div class="slab" style="transform:translateY(30px) rotateX(90deg)"></div>
+          </div>
+        </div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(0deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/784019a1dfde6b96998cb18dd7a10013.jpg" alt="Poster phim Mai"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(45deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/17a5a4cf05f30cbf76be9c1ca7724867.jpg" alt="Poster phim Mắt Biếc"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(90deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/b032fb9e555e690ab1c86ee809f1ad72.jpg" alt="Poster phim Mưa Đỏ"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(135deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/cd52e5a6b9bb0f2165d4f704ac5b0579.jpg" alt="Poster phim Đất Rừng Phương Nam"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(180deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/7952ef9e62e6cc99fb94c0d4127085e2.jpg" alt="Poster phim Tài"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(225deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/dd1672f6f8358b1f06dc660cb6cabc86.jpg" alt="Poster phim Đảo Độc Đắc"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(270deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/88d7b4e3170a72a672c3dce7d51022db.jpg" alt="Poster phim Trạng Quỳnh"></div></div>
+        <div class="p3" style="left:-60px;top:-80px;transform:rotateY(315deg) translateZ(400px)"><div class="poster hposter"><img src="./assets/11de7a8b9f4332ff834d046d5923bbc8.jpg" alt="Poster phim Chuỗi Ngày Cô Đơn"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee" style="background:#000000;margin-top:24px">
+  <div class="marquee-track">
+    <span>Tìm kiếm bằng giọng nói<i>●</i></span>
+    <span>Phim và truyền hình<i>●</i></span>
+    <span>Thể thao trực tiếp<i>●</i></span>
+    <span>Kênh truyền hình<i>●</i></span>
+    <span>Lịch và TV xem lại<i>●</i></span>
+    <span>Ứng dụng giải trí<i>●</i></span>
+    <span>Tìm kiếm bằng giọng nói<i>●</i></span>
+    <span>Phim và truyền hình<i>●</i></span>
+    <span>Thể thao trực tiếp<i>●</i></span>
+    <span>Kênh truyền hình<i>●</i></span>
+    <span>Lịch và TV xem lại<i>●</i></span>
+    <span>Ứng dụng giải trí<i>●</i></span>
+  </div>
+</div>
+
+<!-- Interactive TV (dark gray) -->
+
+
+<!-- Features (black) -->
+<section id="tro-ly" style="background:#272729;color:#ffffff;padding:80px 24px;box-sizing:border-box;text-align:center">
+  <h2 style="margin:0 auto;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0">Trợ lý ảo Tibo</h2>
+  <p style="margin:16px auto 0;max-width:720px;font-size:28px;font-weight:400;line-height:1.14;letter-spacing:0.196px;color:#cccccc">Nói để tìm phim, mở kênh, tra lịch chiếu. Không cần nhớ tên chương trình.</p>
+
+  <!-- TV mockup -->
+  <div style="max-width:960px;margin:48px auto 0;background:#000000;border-radius:18px;padding:24px;box-sizing:border-box;text-align:left;box-shadow:0 30px 60px rgba(0,0,0,.5)">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+        <button class="tv-tab" onClick="{{ t.pick }}" style="background:{{ t.bg }};color:{{ t.fg }};border:none;border-radius:9999px;padding:8px 16px;font-size:14px;font-weight:600;letter-spacing:-0.224px">{{ t.label }}</button>
+      </sc-for>
+    </div>
+
+    <div style="position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:{{ featBg }};box-sizing:border-box;padding:40px;display:flex;flex-direction:column;justify-content:flex-end">
+      <div class="slide-text" style="max-width:520px">
+        <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:-0.224px;color:#ffffff;opacity:.85">{{ featTag }}</p>
+        <h3 style="margin:0 0 8px;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0;color:#ffffff">{{ featTitle }}</h3>
+        <p style="margin:0;font-size:21px;line-height:1.19;letter-spacing:0.231px;color:#ffffff;opacity:.9">{{ featSub }}</p>
+      </div>
+      <div style="position:absolute;right:40px;top:40px;display:flex;gap:8px">
+        <sc-for list="{{ dots }}" as="d" hint-placeholder-count="3">
+          <button class="tv-dot" onClick="{{ d.pick }}" aria-label="Slide" style="width:{{ d.w }};height:8px;border-radius:9999px;border:none;background:{{ d.bg }};padding:0"></button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;overflow:hidden;margin-top:20px;padding:12px 0">
+      <sc-for list="{{ tiles }}" as="it" hint-placeholder-count="6">
+        <div class="tv-tile" style="flex:0 0 auto;width:140px;height:84px;border-radius:8px;background:{{ it.c }};display:flex;align-items:flex-end;padding:8px;box-sizing:border-box">
+          <span style="font-size:12px;font-weight:600;letter-spacing:-0.12px;color:#ffffff">{{ it.t }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:12px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="mic-dot"></span>
+        <span style="font-size:17px;color:#cccccc">Bạn nói: <span style="color:#ffffff;font-weight:600">{{ voice }}</span></span>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="remote-btn" onClick="{{ prev }}" aria-label="Kênh trước" style="background:#272729;color:#ffffff;border:none;border-radius:9999px;width:44px;height:44px;font-size:18px">←</button>
+        <button class="remote-btn" onClick="{{ next }}" aria-label="Kênh sau" style="background:#272729;color:#ffffff;border:none;border-radius:9999px;width:44px;height:44px;font-size:18px">→</button>
+      </div>
+    </div>
+  </div>
+  <p style="margin:16px auto 0;font-size:14px;color:#cccccc">Bấm mũi tên hoặc chọn mục để xem cách Tibo phản hồi.</p>
+</section><section id="tinh-nang" style="background:#000000;padding:80px 24px;box-sizing:border-box;text-align:center">
+  <h2 style="margin:0 auto;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0">Dành cho cả gia đình</h2>
+  <p style="margin:16px auto 0;max-width:720px;font-size:21px;line-height:1.19;letter-spacing:0.231px;color:#cccccc">Giao diện đơn giản, một nút bấm, một câu nói. Ông bà, bố mẹ và các con đều dùng được ngay.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;max-width:1200px;margin:48px auto 0;text-align:left">
+    <div class="feat" style="background:#272729;border:1px solid transparent;border-radius:18px;padding:24px">
+      <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;letter-spacing:-0.374px">Phim và truyền hình</h3>
+      <p style="margin:0;font-size:14px;letter-spacing:-0.224px;color:#cccccc">Kho phim, series và chương trình truyền hình được cập nhật thường xuyên.</p>
+    </div>
+    <div class="feat" style="background:#272729;border:1px solid transparent;border-radius:18px;padding:24px">
+      <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;letter-spacing:-0.374px">Kênh truyền hình</h3>
+      <p style="margin:0;font-size:14px;letter-spacing:-0.224px;color:#cccccc">Danh sách kênh rõ ràng, dễ chuyển nhanh bằng nút CH hoặc bằng giọng nói.</p>
+    </div>
+    <div class="feat" style="background:#272729;border:1px solid transparent;border-radius:18px;padding:24px">
+      <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;letter-spacing:-0.374px">Ứng dụng giải trí</h3>
+      <p style="margin:0;font-size:14px;letter-spacing:-0.224px;color:#cccccc">Mở rộng thêm ứng dụng ngay trên màn hình tivi của bạn.</p>
+    </div>
+    <div class="feat" style="background:#272729;border:1px solid transparent;border-radius:18px;padding:24px">
+      <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;letter-spacing:-0.374px">Hỗ trợ tận nơi</h3>
+      <p style="margin:0;font-size:14px;letter-spacing:-0.224px;color:#cccccc">Đội ngũ kỹ thuật hỗ trợ lắp đặt và giải đáp mọi thắc mắc qua tổng đài.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Box and voice remote (dark gray) -->
+<section style="background:#272729;padding:80px 24px;box-sizing:border-box;text-align:center">
+  <h2 style="margin:0 auto;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0">Một hộp, một điều khiển giọng nói</h2>
+  <p style="margin:16px auto 0;max-width:720px;font-size:21px;line-height:1.19;letter-spacing:0.231px;color:#cccccc">Hộp TV360 Box kết nối với tivi. Điều khiển có nút trợ lý giọng nói để bạn nói thay cho việc bấm.</p>
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1000px;margin:48px auto 0;text-align:left">
+    <div class="feat" style="background:#000000;border-radius:18px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:24px;min-height:560px;box-sizing:border-box">
+      <div style="display:flex;align-items:center;justify-content:center;flex:1;width:100%;min-height:300px" role="img" aria-label="Mô phỏng 3D hộp TV360 Box">
+        <div class="float3d">
+          <div class="cube3d">
+            <div class="f f-front">TV<span style="color:#e5322d">360</span></div>
+            <div class="f f-back"></div>
+            <div class="f f-right"></div>
+            <div class="f f-left"></div>
+            <div class="f f-top"><span style="background:#ffffff;color:#1d1d1f;font-size:9px;font-weight:600;padding:6px 10px;border-radius:4px">TV360 Box</span></div>
+            <div class="f f-bottom"></div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center">
+        <h3 style="margin:0 0 8px;font-size:21px;font-weight:600;letter-spacing:0.231px">Hộp TV360 Box</h3>
+        <p style="margin:0;font-size:14px;letter-spacing:-0.224px;color:#cccccc">Kết nối với tivi để xem truyền hình, phim và ứng dụng giải trí.</p>
+      </div>
+    </div>
+    <div class="feat" style="background:#000000;border-radius:18px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:24px;min-height:560px;box-sizing:border-box">
+      <div class="remote3d" role="img" aria-label="Mô phỏng 3D điều khiển, nút trợ lý giọng nói màu đỏ">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="rnum" style="width:20px;height:20px;color:#ff5a4e">●</span>
+          <span class="rb" style="width:34px">TV</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+          <span class="rb">Kênh</span><span class="rb">Phim</span>
+          <span class="rb">Video</span><span class="rb">Thể thao</span>
+          <span class="rb">Âm nhạc</span><span class="rb">Trò chơi</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="rb" style="width:44px">App</span>
+          <span class="rb" style="width:44px">TV360</span>
+        </div>
+        <div style="position:relative;width:96px;height:96px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 40% 30%,#3a3a3f,#18181b);box-shadow:0 4px 0 #0a0a0c,inset 0 1px 0 rgba(255,255,255,.1)">
+          <span style="position:absolute;left:50%;top:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:linear-gradient(180deg,#3a3a3f,#1c1c1f);box-shadow:0 2px 0 #0a0a0c;color:#ffffff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center">OK</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="rnum">←</span>
+          <span class="rmic">
+            <span class="voice-ring" style="position:absolute;left:50%;top:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;border:2px solid #2997ff;box-sizing:border-box"></span>●
+          </span>
+          <span class="rnum">⌂</span>
+        </div>
+        <div style="display:flex;justify-content:space-between">
+          <span class="rb" style="width:50px;height:28px">VOL</span>
+          <span class="rb" style="width:50px;height:28px">CH</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;justify-items:center">
+          <span class="rnum" style="width:24px;height:24px">1</span><span class="rnum" style="width:24px;height:24px">2</span><span class="rnum" style="width:24px;height:24px">3</span>
+          <span class="rnum" style="width:24px;height:24px">4</span><span class="rnum" style="width:24px;height:24px">5</span><span class="rnum" style="width:24px;height:24px">6</span>
+          <span class="rnum" style="width:24px;height:24px">7</span><span class="rnum" style="width:24px;height:24px">8</span><span class="rnum" style="width:24px;height:24px">9</span>
+          <span class="rnum" style="width:24px;height:24px">*</span><span class="rnum" style="width:24px;height:24px">0</span><span class="rnum" style="width:24px;height:24px">#</span>
+        </div>
+        <div style="text-align:center;font-size:10px;font-weight:700;color:#e5322d;letter-spacing:0.5px">TV360</div>
+      </div>
+      <div style="text-align:center">
+        <h3 style="margin:0 0 8px;font-size:21px;font-weight:600;letter-spacing:0.231px">Điều khiển giọng nói</h3>
+        <p style="margin:0;font-size:14px;letter-spacing:-0.224px;color:#cccccc">Nhấn nút khoanh xanh rồi nói lệnh của bạn.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Voice commands -->
+  <div style="max-width:1000px;margin:64px auto 0;text-align:center">
+    <h3 style="margin:0 0 8px;font-size:28px;font-weight:600;line-height:1.14;letter-spacing:0.196px">Nói là làm</h3>
+    <p style="margin:0 0 24px;font-size:17px;color:#cccccc">Chọn một câu lệnh để xem Tibo phản hồi như thế nào.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+      <sc-for list="{{ cmds }}" as="c" hint-placeholder-count="5">
+        <button class="tv-tab" onClick="{{ c.pick }}" style="background:{{ c.bg }};color:{{ c.fg }};border:none;border-radius:9999px;padding:10px 18px;font-size:14px;font-weight:600;letter-spacing:-0.224px">{{ c.say }}</button>
+      </sc-for>
+    </div>
+    <div style="margin:24px auto 0;max-width:640px;background:#000000;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:16px;text-align:left">
+      <div style="align-self:flex-end;background:#0066cc;color:#ffffff;border-radius:18px 18px 4px 18px;padding:12px 16px;max-width:80%">
+        <span style="font-size:12px;opacity:.85">Bạn nói</span>
+        <div style="font-size:17px">{{ userSay }}</div>
+      </div>
+      <div class="slide-text" style="align-self:flex-start;background:#272729;color:#ffffff;border-radius:18px 18px 18px 4px;padding:12px 16px;max-width:80%">
+        <span style="font-size:12px;color:#cccccc">Tibo</span>
+        <div style="font-size:17px">{{ reply }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works (black) -->
+<section style="background:#000000;padding:80px 24px;box-sizing:border-box;text-align:center">
+  <h2 style="margin:0 auto;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0">Bắt đầu trong 3 bước</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1080px;margin:48px auto 0;text-align:left">
+    <div class="step" style="padding:8px 0">
+      <p class="step-num" style="margin:0 0 8px;font-size:14px;font-weight:600;color:#2997ff;transition:color .3s ease">Bước 1</p>
+      <h3 style="margin:0 0 8px;font-size:21px;font-weight:600;line-height:1.19;letter-spacing:0.231px">Đăng ký dịch vụ</h3>
+      <p style="margin:0;color:#cccccc">Liên hệ tổng đài hoặc để lại thông tin, nhân viên sẽ tư vấn gói phù hợp.</p>
+    </div>
+    <div class="step" style="padding:8px 0">
+      <p class="step-num" style="margin:0 0 8px;font-size:14px;font-weight:600;color:#2997ff;transition:color .3s ease">Bước 2</p>
+      <h3 style="margin:0 0 8px;font-size:21px;font-weight:600;line-height:1.19;letter-spacing:0.231px">Lắp đặt và kết nối</h3>
+      <p style="margin:0;color:#cccccc">Kết nối TV360 Box với tivi và mạng internet theo hướng dẫn hoặc nhờ kỹ thuật viên hỗ trợ.</p>
+    </div>
+    <div class="step" style="padding:8px 0">
+      <p class="step-num" style="margin:0 0 8px;font-size:14px;font-weight:600;color:#2997ff;transition:color .3s ease">Bước 3</p>
+      <h3 style="margin:0 0 8px;font-size:21px;font-weight:600;line-height:1.19;letter-spacing:0.231px">Thưởng thức</h3>
+      <p style="margin:0;color:#cccccc">Đăng nhập tài khoản TV360, nói lời đầu tiên và tận hưởng nội dung.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Packages (dark gray) -->
+<section id="goi-cuoc" style="background:#272729;padding:80px 24px;box-sizing:border-box;text-align:center">
+  <h2 style="margin:0 auto;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0">Chọn gói dịch vụ</h2>
+  <p style="margin:16px auto 0;font-size:21px;line-height:1.19;letter-spacing:0.231px;color:#cccccc">[MÔ TẢ GÓI - CẦN BỔ SUNG]</p>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1080px;margin:48px auto 0;text-align:left">
+    <div class="plan" style="background:#000000;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+      <h3 style="margin:0;font-size:21px;font-weight:600;letter-spacing:0.231px">Standard</h3>
+      <p style="margin:0;font-size:14px;color:#cccccc">Chỉ từ</p>
+      <p style="margin:0;font-size:34px;font-weight:600;letter-spacing:-0.374px">42.000đ <span style="font-size:14px;font-weight:400;color:#7a7a7a;text-decoration:line-through">60.000đ</span></p>
+      <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;font-size:14px;line-height:1.4;letter-spacing:-0.224px">
+        <li>Độc quyền Asian Cup 2027</li>
+        <li>Độc quyền giải C1 &amp; Bundesliga</li>
+        <li style="color:#7a7a7a;text-decoration:line-through">Độc quyền giải đua xe F1</li>
+        <li>Trực tiếp Cúp Châu Âu, La Liga và nhiều giải thể thao lớn</li>
+        <li>Hơn 130 kênh truyền hình trong nước &amp; quốc tế</li>
+        <li>Phim Châu Á hay nhất</li>
+        <li>Kho bom tấn Âu Mỹ</li>
+        <li>Phim điện ảnh Việt Nam mới nhất</li>
+        <li>Xem 2 thiết bị tại 1 thời điểm</li>
+      </ul>
+      <a href="#lien-he" class="btn-primary" style="margin-top:8px;background:#0066cc;color:#ffffff;border-radius:9999px;padding:11px 22px;text-align:center;font-size:17px">Đăng ký</a>
+    </div>
+    <div class="plan" style="background:#000000;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+      <h3 style="margin:0;font-size:21px;font-weight:600;letter-spacing:0.231px">V Cine</h3>
+      <p style="margin:0;font-size:14px;color:#cccccc">Chỉ từ</p>
+      <p style="margin:0;font-size:34px;font-weight:600;letter-spacing:-0.374px">21.000đ <span style="font-size:14px;font-weight:400;color:#7a7a7a;text-decoration:line-through">30.000đ</span></p>
+      <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;font-size:14px;line-height:1.4;letter-spacing:-0.224px">
+        <li style="color:#7a7a7a;text-decoration:line-through">Độc quyền giải C1 &amp; Bundesliga</li>
+        <li style="color:#7a7a7a;text-decoration:line-through">Độc quyền giải đua xe F1</li>
+        <li style="color:#7a7a7a;text-decoration:line-through">Trực tiếp Cúp Châu Âu, La Liga và nhiều giải thể thao lớn</li>
+        <li>Hơn 120 kênh truyền hình trong nước &amp; quốc tế</li>
+        <li>Phim Châu Á hay nhất</li>
+        <li>Kho bom tấn Âu Mỹ</li>
+        <li>Phim điện ảnh Việt Nam mới nhất</li>
+        <li>Chỉ xem trên điện thoại, 1 thiết bị tại 1 thời điểm</li>
+      </ul>
+      <a href="#lien-he" class="btn-primary" style="margin-top:8px;background:#0066cc;color:#ffffff;border-radius:9999px;padding:11px 22px;text-align:center;font-size:17px">Đăng ký</a>
+    </div>
+    <div class="plan" style="background:#000000;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+      <h3 style="margin:0;font-size:21px;font-weight:600;letter-spacing:0.231px">V Sport</h3>
+      <p style="margin:0;font-size:14px;color:#cccccc">Chỉ từ</p>
+      <p style="margin:0;font-size:34px;font-weight:600;letter-spacing:-0.374px">24.500đ <span style="font-size:14px;font-weight:400;color:#7a7a7a;text-decoration:line-through">35.000đ</span></p>
+      <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;font-size:14px;line-height:1.4;letter-spacing:-0.224px">
+        <li>Độc quyền Asian Cup 2027</li>
+        <li>Độc quyền giải C1 &amp; Bundesliga</li>
+        <li style="color:#7a7a7a;text-decoration:line-through">Độc quyền giải đua xe F1</li>
+        <li>Trực tiếp Cúp Châu Âu, La Liga và nhiều giải thể thao lớn</li>
+        <li>Hơn 120 kênh truyền hình trong nước &amp; quốc tế</li>
+        <li style="color:#7a7a7a;text-decoration:line-through">Phim Châu Á hay nhất</li>
+        <li style="color:#7a7a7a;text-decoration:line-through">Kho bom tấn Âu Mỹ</li>
+        <li>Chỉ xem trên điện thoại, 1 thiết bị tại 1 thời điểm</li>
+      </ul>
+      <a href="#lien-he" class="btn-primary" style="margin-top:8px;background:#0066cc;color:#ffffff;border-radius:9999px;padding:11px 22px;text-align:center;font-size:17px">Đăng ký</a>
+    </div>
+    <div class="plan" style="background:#000000;border:2px solid #2997ff;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+      <h3 style="margin:0;font-size:21px;font-weight:600;letter-spacing:0.231px">VIP</h3>
+      <p style="margin:0;font-size:14px;color:#cccccc">Chỉ từ</p>
+      <p style="margin:0;font-size:34px;font-weight:600;letter-spacing:-0.374px">80.000đ</p>
+      <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;font-size:14px;line-height:1.4;letter-spacing:-0.224px">
+        <li>Độc quyền Asian Cup 2027</li>
+        <li>Độc quyền giải C1 &amp; Bundesliga</li>
+        <li>Độc quyền giải đua xe F1</li>
+        <li>Trực tiếp Cúp Châu Âu, La Liga và nhiều giải thể thao lớn</li>
+        <li>Hơn 130 kênh truyền hình trong nước &amp; quốc tế</li>
+        <li>Phim Châu Á hay nhất</li>
+        <li>Kho bom tấn Âu Mỹ</li>
+        <li>Phim điện ảnh Việt Nam mới nhất</li>
+        <li>Xem 2 thiết bị tại 1 thời điểm</li>
+      </ul>
+      <a href="#lien-he" class="btn-primary" style="margin-top:8px;background:#0066cc;color:#ffffff;border-radius:9999px;padding:11px 22px;text-align:center;font-size:17px">Đăng ký</a>
+    </div>
+    <div class="plan" style="background:#000000;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+      <h3 style="margin:0;font-size:21px;font-weight:600;letter-spacing:0.231px">VIP Mobile</h3>
+      <p style="margin:0;font-size:14px;color:#cccccc">Chỉ từ</p>
+      <p style="margin:0;font-size:34px;font-weight:600;letter-spacing:-0.374px">28.000đ <span style="font-size:14px;font-weight:400;color:#7a7a7a;text-decoration:line-through">40.000đ</span></p>
+      <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;font-size:14px;line-height:1.4;letter-spacing:-0.224px">
+        <li>Độc quyền Asian Cup 2027</li>
+        <li>Độc quyền giải C1 &amp; Bundesliga</li>
+        <li style="color:#7a7a7a;text-decoration:line-through">Độc quyền giải đua xe F1</li>
+        <li>Trực tiếp Cúp Châu Âu, La Liga và nhiều giải thể thao lớn</li>
+        <li>Hơn 130 kênh truyền hình trong nước &amp; quốc tế</li>
+        <li>Phim Châu Á hay nhất</li>
+        <li>Kho bom tấn Âu Mỹ</li>
+        <li>Phim điện ảnh Việt Nam mới nhất</li>
+        <li>Chỉ xem trên điện thoại, 1 thiết bị tại 1 thời điểm</li>
+      </ul>
+      <a href="#lien-he" class="btn-primary" style="margin-top:8px;background:#0066cc;color:#ffffff;border-radius:9999px;padding:11px 22px;text-align:center;font-size:17px">Đăng ký</a>
+    </div>
+    <div class="plan" style="background:#000000;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+      <h3 style="margin:0;font-size:21px;font-weight:600;letter-spacing:0.231px">TV360 Vip Youtube</h3>
+      <p style="margin:0;font-size:14px;color:#cccccc">Chỉ từ</p>
+      <p style="margin:0;font-size:34px;font-weight:600;letter-spacing:-0.374px">129.000đ</p>
+      <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;font-size:14px;line-height:1.4;letter-spacing:-0.224px">
+        <li>YouTube Premium</li>
+        <li>Độc quyền Asian Cup 2027</li>
+        <li>Độc quyền giải C1 &amp; Bundesliga</li>
+        <li>Trực tiếp Cúp Châu Âu, La Liga và nhiều giải thể thao lớn</li>
+        <li>Hơn 130 kênh truyền hình trong nước &amp; quốc tế</li>
+        <li>Phim Châu Á hay nhất</li>
+        <li>Kho bom tấn Âu Mỹ</li>
+        <li>Phim điện ảnh Việt Nam mới nhất</li>
+        <li>Xem 2 thiết bị tại 1 thời điểm</li>
+      </ul>
+      <a href="#lien-he" class="btn-primary" style="margin-top:8px;background:#0066cc;color:#ffffff;border-radius:9999px;padding:11px 22px;text-align:center;font-size:17px">Đăng ký</a>
+    </div>
+  </div>
+</section>
+
+<!-- Closing CTA (black) -->
+<section id="lien-he" style="background:#000000;color:#ffffff;padding:80px 24px;box-sizing:border-box;text-align:center">
+  <h2 style="margin:0 auto;font-size:40px;font-weight:600;line-height:1.1;letter-spacing:0">Sẵn sàng trải nghiệm TV360 Box?</h2>
+  <p style="margin:16px auto 0;font-size:21px;line-height:1.19;letter-spacing:0.231px;color:#cccccc">Gọi tổng đài hoặc để lại thông tin, chúng tôi sẽ liên hệ trong thời gian sớm nhất.</p>
+  <div style="display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap">
+    <a href="tel:18009168" class="btn-primary" style="background:#0066cc;color:#ffffff;border-radius:9999px;padding:11px 22px;font-size:17px">Gọi 1800 9168</a>
+    <a href="tel:18008119" class="btn-ghost" style="background:transparent;color:#2997ff;border:1px solid #2997ff;border-radius:9999px;padding:10px 21px;font-size:17px">Gọi 1800 8119</a>
+  </div>
+</section>
+
+<!-- Footer (black) -->
+<footer style="background:#000000;padding:48px 24px 64px;box-sizing:border-box;color:#cccccc;border-top:1px solid rgba(255,255,255,0.08)">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px">
+    <div>
+      <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:-0.224px;color:#ffffff">Trung tâm Dịch vụ Truyền hình TV360</p>
+      <p style="margin:0;font-size:14px;letter-spacing:-0.224px">[ĐỊA CHỈ - CẦN BỔ SUNG]</p>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:-0.224px;color:#ffffff">Liên hệ</p>
+      <p style="margin:0;font-size:14px;letter-spacing:-0.224px">Tổng đài: 1800 9168 / 1800 8119</p>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:-0.224px;color:#ffffff">Thông tin</p>
+      <p style="margin:0;font-size:14px;letter-spacing:-0.224px">[CHÍNH SÁCH - CẦN BỔ SUNG]</p>
+    </div>
+  </div>
+  <p style="max-width:1080px;margin:32px auto 0;font-size:12px;letter-spacing:-0.12px;color:#7a7a7a">Giá và quyền lợi có thể thay đổi theo từng thời kỳ. Vui lòng liên hệ tổng đài để biết thông tin chi tiết.</p>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+componentDidMount() {
+this.timer = setInterval(() => {
+this.setState((s) => ({ slide: ((s.slide ?? 0) + 1) % 3, cmd: ((s.cmd ?? 0) + 1) % 5 }));
+}, 4000);
+}
+componentWillUnmount() {
+clearInterval(this.timer);
+}
+renderVals() {
+const tab = this.state.tab ?? 0;
+const slide = this.state.slide ?? 0;
+const cmd = this.state.cmd ?? 0;
+
+const CMDS = [
+  { say: 'Tìm phim hành động', reply: 'Đây là các phim hành động mới nhất.' },
+  { say: 'Mở kênh VTV1', reply: 'Đang chuyển đến kênh VTV1.' },
+  { say: 'Xem lại tối qua', reply: 'Mở Lịch và TV xem lại, mục hôm qua.' },
+  { say: 'Bật thể thao trực tiếp', reply: 'Đang mở mục Thể thao trực tiếp.' },
+  { say: 'Tăng âm lượng', reply: 'Đã tăng âm lượng lên một mức.' },
+];
+
+const TABS = [
+  { label: 'Trang chủ', voice: '"Mở trang chủ"' },
+  { label: 'Phim', voice: '"Tìm phim hành động"' },
+  { label: 'Thể thao', voice: '"Mở kênh thể thao"' },
+  { label: 'Kênh TV', voice: '"Chuyển sang VTV1"' },
+];
+
+const SLIDES = [
+  { tag: 'Trợ lý Tibo', title: 'Nói là xem', sub: 'Tìm phim, mở kênh chỉ bằng giọng nói.', bg: '#0066cc' },
+  { tag: 'Thể thao', title: 'Không bỏ lỡ trận nào', sub: 'Mở kênh thể thao trực tiếp ngay lập tức.', bg: '#7a1f2b' },
+  { tag: 'Lịch và TV xem lại', title: 'Xem lại mọi chương trình', sub: 'Quay lại chương trình đã phát trong lịch.', bg: '#1f5e3a' },
+];
+
+const TILES = [
+  [ { t: 'Phim mới', c: '#3a3a3c' }, { t: 'Phim bộ', c: '#48484a' }, { t: 'Giải trí', c: '#2c4a6e' }, { t: 'Gia đình', c: '#5a3d2b' }, { t: 'Hoạt hình', c: '#2e5c4a' }, { t: 'Tin tức', c: '#4a2e5c' } ],
+  [ { t: 'Hành động', c: '#6e2c2c' }, { t: 'Tình cảm', c: '#5c2e4a' }, { t: 'Kinh dị', c: '#2a2a2c' }, { t: 'Hài', c: '#5c4a2e' }, { t: 'Phiêu lưu', c: '#2e4a5c' }, { t: 'Tâm lý', c: '#3e3e44' } ],
+  [ { t: 'Bóng đá', c: '#1f5e3a' }, { t: 'Tin thể thao', c: '#2e6e46' }, { t: 'Giải đấu', c: '#245236' }, { t: 'Highlight', c: '#3a7a52' }, { t: 'Đua xe', c: '#333' }, { t: 'Quần vợt', c: '#2c5a3e' } ],
+  [ { t: 'VTV1', c: '#2a3c5c' }, { t: 'VTV3', c: '#2e4a6e' }, { t: 'HBO', c: '#1c1c1e' }, { t: 'Cinemax', c: '#2a2a2c' }, { t: 'K+', c: '#3c2c5c' }, { t: 'HTV', c: '#2c4c3c' } ],
+];
+
+return {
+  tabs: TABS.map((t, i) => ({
+    label: t.label,
+    fg: i === tab ? '#000000' : '#ffffff',
+    bg: i === tab ? '#ffffff' : 'rgba(255,255,255,0.1)',
+    pick: () => this.setState({ tab: i }),
+  })),
+  voice: TABS[tab].voice,
+  cmds: CMDS.map((c, i) => ({
+    say: c.say,
+    bg: i === cmd ? '#ffffff' : 'rgba(255,255,255,0.1)',
+    fg: i === cmd ? '#000000' : '#ffffff',
+    pick: () => this.setState({ cmd: i }),
+  })),
+  userSay: CMDS[cmd].say,
+  reply: CMDS[cmd].reply,
+  tiles: TILES[tab],
+  featTag: SLIDES[slide].tag,
+  featTitle: SLIDES[slide].title,
+  featSub: SLIDES[slide].sub,
+  featBg: SLIDES[slide].bg,
+  dots: SLIDES.map((s, i) => ({
+    w: i === slide ? '28px' : '8px',
+    bg: i === slide ? '#ffffff' : 'rgba(255,255,255,0.5)',
+    pick: () => this.setState({ slide: i }),
+  })),
+  next: () => this.setState((s) => ({ tab: ((s.tab ?? 0) + 1) % TABS.length })),
+  prev: () => this.setState((s) => ({ tab: ((s.tab ?? 0) + TABS.length - 1) % TABS.length })),
+};
+}
+}
+</script>
+</body>
+</html>
